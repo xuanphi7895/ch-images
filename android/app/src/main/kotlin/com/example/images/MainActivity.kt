@@ -1,4 +1,4 @@
-package com.example.images
+package com.myapp.images
 
 import io.flutter.embedding.android.FlutterActivity
 

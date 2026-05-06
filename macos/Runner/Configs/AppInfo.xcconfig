@@ -8,7 +8,7 @@
 PRODUCT_NAME = images
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.images
+PRODUCT_BUNDLE_IDENTIFIER = com.myapp.images
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.example. All rights reserved.
