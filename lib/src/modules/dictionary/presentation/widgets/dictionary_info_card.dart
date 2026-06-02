@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:images/src/modules/dictionary/data/dictionary_api.dart';
+import 'package:images/src/modules/dictionary/presentation/widgets/user_pronunciation_panel.dart';
 
 import '../../data/dictionary_audio.dart';
 
@@ -68,6 +69,7 @@ class _DictionaryInfoCardState extends State<DictionaryInfoCard> {
               onListen: _listenWord,
             ),
             const SizedBox(height: 16),
+            UserPronunciationPanel(word: entry.word),
             // ...entry.meanings.map(
             //   (meaning) => _MeaningSection(
             //     meaning: meaning,

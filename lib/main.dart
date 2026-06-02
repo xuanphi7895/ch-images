@@ -4,6 +4,7 @@ import 'package:images/src/app/english_app.dart';
 import 'package:images/src/modules/dictionary/presentation/screens/dictionary_screen.dart';
 import 'package:images/src/modules/dictionary/presentation/screens/word_lookup_screen.dart';
 import 'package:images/src/modules/features/english_card/presentation/pages/learn_english_app.dart';
+import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
 // import 'package:images/src/modules/home/screens/home_screen.dart';
 import 'package:images/src/modules/login/screens/login_screen.dart';
 import 'package:images/src/widgets/custom_colors.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           secondary: CustomColors.secondary,
         ),
       ),
-      initialRoute: '/learn',
+      initialRoute: '/home',
       routes: {
         '/word': (context) => const WordLookupScreen(),
         '/dictionary': (context) => const DictionaryScreen(),
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/learn': (context) => const LearnEnglishApp(),
+        // '/pdf': (context) => const PdfToTtsPage(),
       },
     );
   }
