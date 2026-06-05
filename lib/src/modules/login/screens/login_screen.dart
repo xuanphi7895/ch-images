@@ -1,80 +1,128 @@
 import 'package:flutter/material.dart';
-import 'package:images/constants.dart';
-import 'package:images/src/modules/login/widgets/send_otp.dart';
-import 'package:images/src/modules/login/widgets/verify_otp.dart';
-import 'package:images/src/utils/common.dart';
-import 'package:images/src/widgets/heading.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:images/src/modules/login/bloc/login_bloc.dart';
+import 'package:images/src/modules/login/bloc/login_event.dart';
+import 'package:images/src/modules/login/bloc/login_state.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (_) => LoginBloc(), child: const _LoginView());
+  }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  bool otpSent = false;
-  String mobile = '';
-
-  void onSendOtpPressed(String mobile) {
-    this.mobile = mobile;
-    otpSent = true;
-    setState(() {
-      otpSent;
-    });
-  }
-
-  void onVerifyOtpPressed(String otp, BuildContext context) {
-    if (otp.length != Constants.otpLength) {
-      showSnackBar(context, message: 'Please enter valid OTP');
-    } else {
-      Navigator.pushNamed(context, '/dashboard');
-    }
-  }
-
-  void onResendOtpPressed() {}
-
-  void onChangeNumberPressed() {
-    otpSent = false;
-    setState(() {
-      otpSent;
-    });
-  }
+class _LoginView extends StatelessWidget {
+  const _LoginView();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login_background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: const [
-                Heading(
-                  'Hello!',
-                  type: HeadingType.h1,
-                  style: TextStyle(color: Colors.white),
+    return BlocConsumer<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if (state.status == LoginStatus.success) {
+          Navigator.pushReplacementNamed(context, '/dashboard');
+        }
+
+        if (state.status == LoginStatus.failure && state.errorMessage != null) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: Card(
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Login',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Use demo@images.app and 123456',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 24),
+                          TextField(
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {
+                              context.read<LoginBloc>().add(
+                                LoginEmailChanged(value),
+                              );
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              hintText: 'demo@images.app',
+                              errorText:
+                                  state.email.isEmpty || state.isEmailValid
+                                  ? null
+                                  : 'Enter a valid email',
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          TextField(
+                            obscureText: true,
+                            onChanged: (value) {
+                              context.read<LoginBloc>().add(
+                                LoginPasswordChanged(value),
+                              );
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              errorText:
+                                  state.password.isEmpty ||
+                                      state.isPasswordValid
+                                  ? null
+                                  : 'Minimum 6 characters',
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            height: 48,
+                            child: ElevatedButton(
+                              onPressed: state.canSubmit
+                                  ? () {
+                                      context.read<LoginBloc>().add(
+                                        const LoginSubmitted(),
+                                      );
+                                    }
+                                  : null,
+                              child: state.status == LoginStatus.loading
+                                  ? const SizedBox(
+                                      width: 22,
+                                      height: 22,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2.5,
+                                      ),
+                                    )
+                                  : const Text('Sign In'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ],
+              ),
             ),
-            otpSent
-                ? VerifyOtp(
-                    mobile: mobile,
-                    onVerifyOtpPressed: onVerifyOtpPressed,
-                    onResendOtpPressed: onResendOtpPressed,
-                    onChangeNumberPressed: onChangeNumberPressed,
-                  )
-                : SendOtp(onSendOtpPressed: onSendOtpPressed),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

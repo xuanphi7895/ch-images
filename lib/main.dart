@@ -5,9 +5,10 @@ import 'package:images/src/modules/dictionary/presentation/screens/dictionary_sc
 import 'package:images/src/modules/dictionary/presentation/screens/word_lookup_screen.dart';
 import 'package:images/src/modules/features/english_card/presentation/pages/learn_english_app.dart';
 import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
-// import 'package:images/src/modules/home/screens/home_screen.dart';
+import 'package:images/src/modules/features/quick_practice/presentation/screen/quick_pratice_sreen.dart';
 import 'package:images/src/modules/login/screens/login_screen.dart';
 import 'package:images/src/widgets/custom_colors.dart';
+import 'package:images/src/modules/home/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,10 +41,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/word': (context) => const WordLookupScreen(),
         '/dictionary': (context) => const DictionaryScreen(),
-        '/home': (context) => const EnglishApp(),
+        // '/home': (context) => const EnglishApp(),
+        '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/learn': (context) => const LearnEnglishApp(),
+        '/quick': (context) => const QuickPracticeScreen(),
         // '/pdf': (context) => const PdfToTtsPage(),
       },
     );
@@ -51,12 +54,13 @@ class MyApp extends StatelessWidget {
 }
 
 // 1. For apk (Android) you need to run the command :
-// flutter build apk --release
+// flutter build apk --release 
+// flutter build appbundle
     // If you want to split the apks per abi (Split Apk) then run
-    // flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+    // flutter build apk --target-platform android-arm, android-arm64, android-x64 --split-per-abi
 // flutter build appbundle
 // D:\flutter\images\build\app\outputs\bundle\release
-// 2. For ipa (iOS) you need to run the command :
+// 2. For ipa (iOS) you need to run the command:
 // flutter build ios --release
 
 
