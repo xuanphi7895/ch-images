@@ -186,3 +186,53 @@ Keep Learning and try to improve your code.
     - Design Pattern
     - State Management Library
     - Architectural Pattern
+
+
+ # How to Handle the Voice AI Workflow
+ 1. User taps "New Chat"
+    => Event: StartChat()
+ 2. BLoC calls Gemini service → gets welcome message
+    => State: ChatLoading()
+    => State: ChatReady(messages=[welcome])
+ 3. UI shows welcome card + "Tap to Speak" mic button
+ 4. User taps "Tap to Speak" (opens voice screen)
+    => Event: OpenVoice()
+    => State: VoiceModeActive(conversationId, isListening=false, isSpeaking=false)
+ 5. User holds mic → App records audio
+    => BLoC streams AudioRecordEvent.started
+    => BLoC streams AudioRecordEvent.started
+    => BLoC streams AudioRecordEvent.data(chunk)
+ 6. User releases mic → App sends audio to Gemini
+    => Event: SendVoice(audioBuffer)
+ 7. BLoC calls Gemini: generates transcription + response + translation
+    => State: ChatReady(..., isWaitingForTutor: true)
+    => Gemini streams JSON: { transcription, response, translation }
+    => BLoC accumulates chunks: transcription="I...", "I had...", "I had a great...", "I had a great day!"
+    => UI updates typing indicator or streams text in real-time
+ 8. Gemini finishes → BLoC emits:
+    => State: ChatReady(..., isWaitingForTutor: false)
+    => State: ChatReady(..., isSpeaking: true)
+    => Flutter TTS speaks response
+ 9. User speaks in Vietnamese → Gemini transcribes → BLoC sends:
+    => Event: SendText("Ngày hôm nay của tôi rất vui")
+ 10. Gemini sends response in English + Vietnamese translation
+    => State: ChatReady(..., isWaitingForTutor: true)
+    => BLoC updates state with full response + translation
+    => State: ChatReady(..., isWaitingForTutor: false)
+ 11. BLoC emits: isSpeaking=true
+    => Flutter TTS speaks
+    => User taps pause → stop TTS
+    => isSpeaking=false
+ 12. User taps "End Chat" (top right) or app navigates away
+    => Event: EndSession()
+    => BLoC closes Gemini stream
+    => BLoC emits ChatInitial()
+ 13. UI returns to chat list
+
+ # Key Concepts
+ 
+ ✓ Event-driven → everything starts with user actions
+ ✓ State-first → UI reflects state (no direct calls from widgets)
+ ✓ Async boundary → Gemini calls happen inside BLoC only
+ ✓ Streams → manage real-time audio + streaming AI responses
+ ✓ Cancellation → properly close Gemini stream when needed
