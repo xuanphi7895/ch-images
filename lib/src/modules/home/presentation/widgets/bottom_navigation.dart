@@ -13,7 +13,7 @@ class BottomNav extends StatelessWidget {
   static const _items = [
     (Icons.home_outlined, 'Home'),
     (Icons.library_books_outlined, 'Lessons'),
-    (Icons.emoji_events_outlined, 'Leaderboard'),
+    (Icons.face_retouching_natural_outlined, 'AI Tutor'),
     (Icons.bar_chart_outlined, 'Progress'),
     (Icons.settings_outlined, 'Settings'),
   ];

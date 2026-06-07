@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/word': (context) => const WordLookupScreen(),
-        '/dictionary': (context) => const DictionaryScreen(),
         // '/home': (context) => const EnglishApp(),
         '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
