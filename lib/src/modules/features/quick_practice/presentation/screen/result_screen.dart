@@ -22,8 +22,9 @@ class ResultScreen extends StatelessWidget {
       case SkillType.pronunciation:
         return 'Pronunciation';
       case SkillType.reading:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Reading';
+      case SkillType.speaking:
+        return 'Speaking';
     }
   }
 

@@ -50,8 +50,8 @@ class _DictionaryFabState extends State<DictionaryFab>
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 16,
-      bottom: 50,
+      right: 20,
+      bottom: 110,
       child: ScaleTransition(
         scale: _pulseScale,
         child: GestureDetector(

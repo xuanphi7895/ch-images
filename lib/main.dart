@@ -6,11 +6,15 @@ import 'package:images/src/modules/dictionary/presentation/screens/word_lookup_s
 import 'package:images/src/modules/features/english_card/presentation/pages/learn_english_app.dart';
 import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/quick_pratice_sreen.dart';
+import 'package:images/src/modules/features/sample/screens/home_screen.dart';
 import 'package:images/src/modules/login/screens/login_screen.dart';
+import 'package:images/src/utils/api_key_store.dart';
 import 'package:images/src/widgets/custom_colors.dart';
 import 'package:images/src/modules/home/presentation/screens/home_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ApiKeyStore.load();
   runApp(const MyApp());
 }
 
@@ -42,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/word': (context) => const WordLookupScreen(),
         // '/home': (context) => const EnglishApp(),
         '/home': (context) => const HomeScreen(),
+        // '/home': (context) => const HomeAIScreen(),
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/learn': (context) => const LearnEnglishApp(),

@@ -15,4 +15,6 @@ class CustomColors {
   static const Color Coral600 = Color(0xFF993C1D);
   static const Color Coral50 = Color(0xFFFAECE7);
   static const Color Amber400 = Color(0xFFEF9F27);
+  static const Color Amber50 = Color(0xFFFAEEDA);
+  static const Color Gray50 = Color(0xFFF1EFE8);
 }

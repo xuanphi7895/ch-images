@@ -18,6 +18,8 @@ import 'package:images/src/modules/features/quick_practice/presentation/screen/g
 import 'package:images/src/modules/features/quick_practice/presentation/screen/pronun_screen.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/quick_pratice_sreen.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/vocab_screen.dart';
+import 'package:images/src/modules/features/speaking/ai_speaking_screen.dart';
+import 'package:images/src/modules/features/speaking/ai_speaking_screen_gemini.dart';
 import 'package:images/src/modules/topics/screens/topic_list_screen.dart';
 import 'package:images/src/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:images/src/modules/home/presentation/bloc/home_event.dart';
@@ -47,58 +49,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// class _HomeView extends StatefulWidget {
-//   const _HomeView();
-
-//   @override
-//   State<_HomeView> createState() => _HomeViewState();
-// }
-
-// class _HomeViewState extends State<_HomeView> {
-//   int _index = 0;
-
-//   static const _pages = [
-//     HomeScreen(),
-//     // TopicListScreen(),
-//     // WordLookupScreen(),
-//     // DictionaryScreen(),
-//     // ProfileScreen(),
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: _pages[_index],
-//       bottomNavigationBar: NavigationBar(
-//         selectedIndex: _index,
-//         onDestinationSelected: (i) => setState(() => _index = i),
-//         destinations: const [
-//           NavigationDestination(
-//             icon: Icon(Icons.home_outlined),
-//             selectedIcon: Icon(Icons.home),
-//             label: 'Home',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.menu_book_outlined),
-//             selectedIcon: Icon(Icons.menu_book),
-//             label: 'Learn',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.translate_outlined),
-//             selectedIcon: Icon(Icons.translate),
-//             label: 'Dictionary',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.person_outline),
-//             selectedIcon: Icon(Icons.person),
-//             label: 'Profile',
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class _HomeView extends StatelessWidget {
   const _HomeView();
 
@@ -112,6 +62,7 @@ class _HomeView extends StatelessWidget {
             // Use the navigator here based on the emitted state
             Widget screen = switch (state.skillType) {
               SkillType.vocabulary => const VocabScreen(),
+              SkillType.speaking => const GrammarScreen(),
               SkillType.grammar => const GrammarScreen(),
               SkillType.reading => const GrammarScreen(), // Placeholder
               SkillType.pronunciation => const PronunScreen(),
@@ -169,7 +120,9 @@ class _ReadyBody extends StatelessWidget {
       case 1:
         return const LessonsScreen();
       case 2:
-        return const AiTutorSelectionScreen();
+        // return const AiTutorSelectionScreen();
+        // return const AiSpeakingScreen();
+        return const AiSpeakingScreenGemini();
       case 3:
         return const TopicListScreen();
       case 4:
