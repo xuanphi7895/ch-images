@@ -1,6 +1,6 @@
 enum LessonType { listening, speaking, reading, writing, grammar, vocabulary }
 
-enum SkillType { vocabulary, grammar, reading, pronunciation }
+enum SkillType { vocabulary, grammar, reading, pronunciation, speaking }
 
 enum RecordingStatus { idle, playing, recording, analyzing, result }
 

@@ -8,6 +8,7 @@ import 'package:equatable/equatable.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/grammar_screen.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/pronun_screen.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/vocab_screen.dart';
+import 'package:images/src/modules/features/speaking/ai_speaking_screen.dart';
 
 // ─── Design tokens ──────────────────────────────────
 const Purple800 = Color(0xFF3C3489);
@@ -28,7 +29,7 @@ const _green50 = Color(0xFFEAF3DE);
 // MODELS
 // ─────────────────────────────────────────────────────
 
-enum PracticeSkill { vocabulary, grammar, reading, pronunciation }
+enum PracticeSkill { vocabulary, grammar, reading, pronunciation, speaking }
 
 class SkillTileData extends Equatable {
   final PracticeSkill skill;
@@ -290,6 +291,8 @@ class _QuickPracticeView extends StatelessWidget {
               return const GrammarScreen();
             case PracticeSkill.pronunciation:
               return const PronunScreen();
+            case PracticeSkill.speaking:
+              return const AiSpeakingScreen();
           }
         },
       ),

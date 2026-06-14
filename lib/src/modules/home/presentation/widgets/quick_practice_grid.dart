@@ -46,6 +46,8 @@ class _PracticeCard extends StatelessWidget {
         return Icons.menu_book_outlined;
       case SkillType.pronunciation:
         return Icons.mic_none_outlined;
+      case SkillType.speaking:
+        return Icons.speaker_phone_outlined;
     }
   }
 
@@ -59,6 +61,8 @@ class _PracticeCard extends StatelessWidget {
         return CustomColors.Coral600;
       case SkillType.pronunciation:
         return CustomColors.Blue600;
+      case SkillType.speaking:
+        return CustomColors.Amber400;
     }
   }
 
