@@ -9,3 +9,5 @@ enum CardRating { again, hard, easy }
 enum LessonLevel { a1, a2, b1, b2, c1 }
 
 enum LessonStatus { locked, available, inProgress, completed }
+
+enum ConnectionStatus { disconnected, connecting, connected, error }

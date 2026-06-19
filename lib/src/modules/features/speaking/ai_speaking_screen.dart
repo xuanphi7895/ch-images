@@ -160,8 +160,7 @@ class SpeakingReady extends SpeakingState {
 class GeminiService {
   // Get free API key at: https://aistudio.google.com/app/apikey
   // Free tier: 15 requests/min, 1M tokens/day — plenty for a language app
-  static const _apiKey =
-      'TX.Pb8RN6KDrR_lsIov0RHJOP7TuFBXqznVyVjTwVx2w2LNLjNAFg';
+  static const _apiKey = '';
   // static const _model = 'gemini-1.5-flash'; // fastest free model
   static const _model = 'gemini-2.5-flash'; // fastest free model
   static const _baseUrl =

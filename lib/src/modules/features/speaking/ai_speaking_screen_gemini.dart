@@ -6,24 +6,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:images/src/modules/live/live_main.dart';
 import 'package:images/src/utils/api_key_store.dart';
 import 'package:images/src/utils/color.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart' as http;
-
-// ─── Design tokens ────────────────────────────────────
-const _purple800 = Color(0xFF3C3489);
-const _purple600 = Color(0xFF534AB7);
-const _purple200 = Color(0xFFAFA9EC);
-const _purple50 = Color(0xFFEEEDFE);
-const _teal600 = Color(0xFF0F6E56);
-const _teal50 = Color(0xFFE1F5EE);
-const _coral600 = Color(0xFF993C1D);
-const _coral50 = Color(0xFFFAECE7);
-const _amber400 = Color(0xFFEF9F27);
-const _amber50 = Color(0xFFFAEEDA);
-const _gray50 = Color(0xFFF1EFE8);
 
 // ─────────────────────────────────────────────────────
 // GEMINI MODEL DEFINITIONS
@@ -56,48 +44,48 @@ const kGeminiModels = [
     name: 'Gemini 2.5 Flash',
     description: '15 RPM · 1,000/day — best for this app',
     badge: 'FREE',
-    badgeColor: _teal600,
-    badgeBg: _teal50,
+    badgeColor: CustomColors.Teal600,
+    badgeBg: CustomColors.Teal50,
   ),
   GeminiModel(
     id: 'gemini-2.5-flash-preview-05-20',
     name: 'gemini-2.5-flash-preview-05-20',
     description: '15 RPM · 1,000/day — best for this app',
     badge: 'FREE',
-    badgeColor: _teal600,
-    badgeBg: _teal50,
+    badgeColor: CustomColors.Teal600,
+    badgeBg: CustomColors.Teal50,
   ),
   GeminiModel(
     id: 'gemini-2.5-flash-lite-preview-06-17',
     name: 'Gemini 2.5 Flash-Lite',
     description: '15 RPM · 1,000/day — fastest & lightest',
     badge: 'FREE',
-    badgeColor: _teal600,
-    badgeBg: _teal50,
+    badgeColor: CustomColors.Teal600,
+    badgeBg: CustomColors.Teal50,
   ),
   GeminiModel(
     id: 'gemini-2.5-pro',
     name: 'Gemini 2.5 Pro',
     description: '5 RPM · 50/day — smartest, very limited free',
     badge: 'LIMITED',
-    badgeColor: _amber400,
-    badgeBg: _amber50,
+    badgeColor: CustomColors.Amber400,
+    badgeBg: CustomColors.Amber50,
   ),
   GeminiModel(
     id: 'gemini-3.5-flash',
     name: 'Gemini 3.5 Flash',
     description: 'Newest Flash · paid tier only',
     badge: 'PAID',
-    badgeColor: _coral600,
-    badgeBg: _coral50,
+    badgeColor: CustomColors.Coral600,
+    badgeBg: CustomColors.Coral50,
   ),
   GeminiModel(
     id: 'gemini-3.1-flash-lite',
     name: 'Gemini 3.1 Flash-Lite',
     description: 'Most cost-efficient · paid tier',
     badge: 'PAID',
-    badgeColor: _coral600,
-    badgeBg: _coral50,
+    badgeColor: CustomColors.Coral600,
+    badgeBg: CustomColors.Coral50,
   ),
 ];
 
@@ -562,7 +550,7 @@ class _SpeakingView extends StatelessWidget {
         builder: (context, state) {
           if (state is SpeakingInitial) {
             return const Center(
-              child: CircularProgressIndicator(color: _purple600),
+              child: CircularProgressIndicator(color: CustomColors.Purple600),
             );
           }
           if (state is SpeakingReady) return _ReadyBody(state: state);
@@ -657,7 +645,7 @@ class _ReadyBodyState extends State<_ReadyBody> {
 //         right: 20,
 //         bottom: 16,
 //       ),
-//       color: _purple800,
+//       color: CustomColors.Purple800,
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: [
@@ -668,7 +656,7 @@ class _ReadyBodyState extends State<_ReadyBody> {
 //                 onTap: () => Navigator.pop(context),
 //                 child: const Icon(
 //                   Icons.arrow_back_ios_new,
-//                   color: _purple200,
+//                   color: CustomColors.Purple200,
 //                   size: 20,
 //                 ),
 //               ),
@@ -687,7 +675,7 @@ class _ReadyBodyState extends State<_ReadyBody> {
 //                     ),
 //                     Text(
 //                       'Speaking practice',
-//                       style: TextStyle(color: _purple200, fontSize: 12),
+//                       style: TextStyle(color: CustomColors.Purple200, fontSize: 12),
 //                     ),
 //                   ],
 //                 ),
@@ -706,11 +694,11 @@ class _ReadyBodyState extends State<_ReadyBody> {
 //                   ),
 //                   child: const Row(
 //                     children: [
-//                       Icon(Icons.refresh, color: _purple200, size: 15),
+//                       Icon(Icons.refresh, color: CustomColors.Purple200, size: 15),
 //                       SizedBox(width: 4),
 //                       Text(
 //                         'New chat',
-//                         style: TextStyle(color: _purple200, fontSize: 12),
+//                         style: TextStyle(color: CustomColors.Purple200, fontSize: 12),
 //                       ),
 //                     ],
 //                   ),
@@ -762,7 +750,7 @@ class _HeaderState extends State<_Header> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [_purple800, _purple600],
+          colors: [CustomColors.Purple800, CustomColors.Purple600],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -787,7 +775,7 @@ class _HeaderState extends State<_Header> {
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
-                      color: _purple200,
+                      color: CustomColors.Purple200,
                       size: 20,
                     ),
                   ),
@@ -808,10 +796,29 @@ class _HeaderState extends State<_Header> {
                           children: [
                             const Text(
                               'Speaking practice',
-                              style: TextStyle(color: _purple200, fontSize: 12),
+                              style: TextStyle(
+                                color: CustomColors.Purple200,
+                                fontSize: 12,
+                              ),
                             ),
                             const SizedBox(width: 10),
                             _ApiKeyStatusBadge(onTap: _openApiKeySettings),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            _HeaderActionButton(
+                              icon: Icons.live_help,
+                              label: 'Try the Live',
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (context) => const LiveApp(),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ],
@@ -909,7 +916,10 @@ class _ApiKeyStatusBadge extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: hasKey ? _teal600 : _coral600, width: 0.8),
+          border: Border.all(
+            color: hasKey ? CustomColors.Teal600 : CustomColors.Coral600,
+            width: 0.8,
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -986,7 +996,7 @@ class _ModelDropdown extends StatelessWidget {
 
   Color _badgeTextColor(GeminiModel m) {
     if (m.badge == 'FREE') return const Color(0xFF9FE1CB);
-    if (m.badge == 'LIMITED') return _amber400;
+    if (m.badge == 'LIMITED') return CustomColors.Amber400;
     return const Color(0xFFF0997B);
   }
 
@@ -1006,7 +1016,7 @@ class _ModelDropdown extends StatelessWidget {
           dropdownColor: const Color(0xFF2E2870),
           icon: const Icon(
             Icons.keyboard_arrow_down,
-            color: _purple200,
+            color: CustomColors.Purple200,
             size: 20,
           ),
 
@@ -1016,7 +1026,7 @@ class _ModelDropdown extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.smart_toy_outlined,
-                  color: _purple200,
+                  color: CustomColors.Purple200,
                   size: 16,
                 ),
                 const SizedBox(width: 8),
@@ -1103,14 +1113,18 @@ class _ModelDropdown extends StatelessWidget {
                             m.description,
                             style: const TextStyle(
                               fontSize: 11,
-                              color: _purple200,
+                              color: CustomColors.Purple200,
                             ),
                           ),
                         ],
                       ),
                     ),
                     if (isSelected)
-                      const Icon(Icons.check, color: _purple200, size: 16),
+                      const Icon(
+                        Icons.check,
+                        color: CustomColors.Purple200,
+                        size: 16,
+                      ),
                   ],
                 ),
               ),
@@ -1152,12 +1166,12 @@ class _ChatBubble extends StatelessWidget {
               width: 30,
               height: 30,
               decoration: const BoxDecoration(
-                color: _purple50,
+                color: CustomColors.Purple50,
                 shape: BoxShape.circle,
               ),
               child: const Icon(
                 Icons.smart_toy_outlined,
-                color: _purple600,
+                color: CustomColors.Purple600,
                 size: 16,
               ),
             ),
@@ -1167,7 +1181,7 @@ class _ChatBubble extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: isUser ? _purple600 : _gray50,
+                color: isUser ? CustomColors.Purple600 : CustomColors.Gray50,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(14),
                   topRight: const Radius.circular(14),
@@ -1207,7 +1221,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: _purple600.withOpacity(0.4),
+                color: CustomColors.Purple600.withOpacity(0.4),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(14),
                   topRight: Radius.circular(14),
@@ -1258,11 +1272,11 @@ class _StatusLabel extends StatelessWidget {
       case PipelineStep.idle:
         return Colors.black38;
       case PipelineStep.listening:
-        return _coral600;
+        return CustomColors.Coral600;
       case PipelineStep.processing:
-        return _purple600;
+        return CustomColors.Purple600;
       case PipelineStep.speaking:
-        return _teal600;
+        return CustomColors.Teal600;
     }
   }
 
@@ -1314,8 +1328,8 @@ class _MicButton extends StatelessWidget {
           color: _isDisabled
               ? Colors.black.withOpacity(0.08)
               : _isListening
-              ? _coral600
-              : _purple600,
+              ? CustomColors.Coral600
+              : CustomColors.Purple600,
         ),
         child: Icon(
           _isListening ? Icons.stop_rounded : Icons.mic_none_outlined,
@@ -1341,18 +1355,28 @@ class _ErrorBanner extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        color: _coral50,
+        color: CustomColors.Coral50,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: _coral600.withOpacity(0.3), width: 0.5),
+        border: Border.all(
+          color: CustomColors.Coral600.withOpacity(0.3),
+          width: 0.5,
+        ),
       ),
       child: Row(
         children: [
-          const Icon(Icons.error_outline, color: _coral600, size: 16),
+          const Icon(
+            Icons.error_outline,
+            color: CustomColors.Coral600,
+            size: 16,
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               message,
-              style: const TextStyle(fontSize: 13, color: _coral600),
+              style: const TextStyle(
+                fontSize: 13,
+                color: CustomColors.Coral600,
+              ),
             ),
           ),
         ],
