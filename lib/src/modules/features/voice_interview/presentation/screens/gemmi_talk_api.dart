@@ -14,8 +14,7 @@ class GeminiLiveScreen extends StatefulWidget {
 
 class _GeminiLiveScreenState extends State<GeminiLiveScreen> {
   // Replace with your protected API Key
-  final String _apiKey =
-      "AQ.Ab8RN6KDrR_lsIov0RHJOP7TuFBXqznVyVjTwVx2w2LNLjNAFg";
+  final String _apiKey = "";
 
   WebSocketChannel? _channel;
   StreamSubscription? _socketSubscription;

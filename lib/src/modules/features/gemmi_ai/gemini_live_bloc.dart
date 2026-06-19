@@ -125,8 +125,7 @@ class LiveReady extends LiveState {
 
 class GeminiLiveBloc extends Bloc<LiveEvent, LiveState> {
   // ── Replace with your Gemini API key ──────
-  static const _apiKey =
-      'AQ.Ab8RN6KDrR_lsIov0RHJOP7TuFBXqznVyVjTwVx2w2LNLjNAFg';
+  static const _apiKey = '';
 
   static const _systemPrompt =
       'You are a friendly English conversation tutor. '
