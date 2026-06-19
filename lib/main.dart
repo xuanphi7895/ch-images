@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:images/src//modules/dashboard/screens/dashboard_screen.dart';
-import 'package:images/src/app/english_app.dart';
-import 'package:images/src/modules/dictionary/presentation/screens/dictionary_screen.dart';
-import 'package:images/src/modules/dictionary/presentation/screens/word_lookup_screen.dart';
+// import 'package:images/src/app/english_app.dart';
 import 'package:images/src/modules/features/english_card/presentation/pages/learn_english_app.dart';
-import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
+// import 'package:images/src/modules/features/gemmi_ai/test.dart';
 import 'package:images/src/modules/features/quick_practice/presentation/screen/quick_pratice_sreen.dart';
-import 'package:images/src/modules/features/sample/screens/home_screen.dart';
+// import 'package:images/src/modules/features/sample/screens/home_screen.dart';
+// import 'package:images/src/modules/features/voice_interview/presentation/screens/voice_interview_screen.dart';
+// import 'package:images/src/modules/home/screens/home_page.dart';
+// import 'package:images/src/modules/live/live_main.dart';
 import 'package:images/src/modules/login/screens/login_screen.dart';
 import 'package:images/src/utils/api_key_store.dart';
 import 'package:images/src/widgets/custom_colors.dart';
 import 'package:images/src/modules/home/presentation/screens/home_screen.dart';
+// import 'package:images/src/modules/features/voice_interview/presentation/screens/gemmi_talk_api.dart';
+// import 'package:images/src/modules/features/gemmi_ai/gemini_live_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +46,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/home',
       routes: {
-        '/word': (context) => const WordLookupScreen(),
         // '/home': (context) => const EnglishApp(),
         '/home': (context) => const HomeScreen(),
         // '/home': (context) => const HomeAIScreen(),
@@ -51,7 +53,6 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => const DashboardScreen(),
         '/learn': (context) => const LearnEnglishApp(),
         '/quick': (context) => const QuickPracticeScreen(),
-        // '/pdf': (context) => const PdfToTtsPage(),
       },
     );
   }
