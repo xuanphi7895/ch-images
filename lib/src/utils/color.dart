@@ -17,4 +17,14 @@ class CustomColors {
   static const Color Amber400 = Color(0xFFEF9F27);
   static const Color Amber50 = Color(0xFFFAEEDA);
   static const Color Gray50 = Color(0xFFF1EFE8);
+  static const Color BlackBackground = Color(0xFF0D0D0F);
+  static const Color CardBg = Color(0xFF18181C);
+  static const Color CardBorder = Color(0xFF2A2A32);
+  static const Color MetaColor = Color(0xFF4A4A5A);
+  static const Color TitleColor = Color(0xFFF0F0F5);
+  static const Color DescColor = Color(0xFF7A7A8A);
+  static const Color BadgeBg = Color(0xFF1E1C14);
+  static const Color BadgeBorder = Color(0xFF3A3520);
+  static const Color StarColor = Color(0xFFD4A017);
+  static const Color ProgTrack = Color(0xFF2A2A35);
 }

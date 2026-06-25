@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:images/src/modules/features/ipa/presentation/screens/ipa_screen.dart';
-import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
+// import 'package:images/src/modules/features/pdf/screens/pdf_to_tts_screen.dart';
 import 'package:images/src/modules/lesson/screens/lesson_screen.dart';
+import 'package:images/src/modules/features/reading/presentation/screens/reading_screen.dart';
+import 'package:images/src/modules/features/speaking/presentation/screen/speaking_screen.dart';
 
 class TopicListScreen extends StatelessWidget {
   const TopicListScreen({super.key});
@@ -29,7 +31,8 @@ class TopicListScreen extends StatelessWidget {
       Icons.headphones,
       Color(0xFFEC4899),
     ),
-    _Topic('read', 'Reading', '16 lessons', Icons.read_more, Color(0xFF10B981)),
+    _Topic('read', 'Reading', '16 lessons', Icons.book, Color(0xFF10B981)),
+    _Topic('speak', 'Speaking', '16 lessons', Icons.speaker, Color(0xFF10B981)),
   ];
 
   @override
@@ -61,9 +64,11 @@ class TopicListScreen extends StatelessWidget {
                   builder: (_) =>
                       // how to pass topic id to lesson screen? should i use named routes or just pass it through constructor?
                       t.id == 'read'
-                      ? PdfToTtsPage()
+                      ? ReadingScreen()
                       : t.id == 'ipa'
                       ? IpaChartPage()
+                      : t.id == 'listen'
+                      ? SpeakingScreen()
                       : LessonScreen(
                           topicId: t.id,
                           title: t.title,

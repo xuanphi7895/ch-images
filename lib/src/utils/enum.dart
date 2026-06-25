@@ -2,6 +2,8 @@ enum LessonType { listening, speaking, reading, writing, grammar, vocabulary }
 
 enum SkillType { vocabulary, grammar, reading, pronunciation, speaking }
 
+enum EnglishSkillType { reading, speaking, writing, listening }
+
 enum RecordingStatus { idle, playing, recording, analyzing, result }
 
 enum CardRating { again, hard, easy }
