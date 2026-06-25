@@ -52,7 +52,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/learn': (context) => const LearnEnglishApp(),
-        '/quick': (context) => const QuickPracticeScreen(),
+        // '/quick': (context) => const QuickPracticeScreen(),
+        // '/quick': (context) => const ReadingScreen(),
       },
     );
   }

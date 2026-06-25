@@ -21,6 +21,7 @@ import 'package:images/src/modules/features/quick_practice/presentation/screen/v
 import 'package:images/src/modules/features/speaking/ai_speaking_screen.dart';
 import 'package:images/src/modules/features/speaking/ai_speaking_screen_gemini.dart';
 import 'package:images/src/modules/topics/screens/topic_list_screen.dart';
+import 'package:images/src/modules/topics/screens/core_skills_screen.dart';
 import 'package:images/src/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:images/src/modules/home/presentation/bloc/home_event.dart';
 import 'package:images/src/modules/home/presentation/bloc/home_state.dart';
@@ -34,6 +35,7 @@ import 'package:images/src/modules/lesson/presentation/screen/lessons_screen.dar
 import 'package:images/src/modules/features/ai_tutor/presentation/screens/ai_tutor_selection_screen.dart';
 import 'package:images/src/modules/settings/presentation/screens/settings_screen.dart';
 import 'package:images/src/modules/dictionary/presentation/widgets/dictionary_fab.dart';
+import 'package:images/src/modules/features/reading/presentation/screens/reading_screen.dart';
 import 'package:images/src/utils/color.dart';
 import 'package:images/src/utils/enum.dart';
 
@@ -64,7 +66,7 @@ class _HomeView extends StatelessWidget {
               SkillType.vocabulary => const VocabScreen(),
               SkillType.speaking => const GrammarScreen(),
               SkillType.grammar => const GrammarScreen(),
-              SkillType.reading => const GrammarScreen(), // Placeholder
+              SkillType.reading => const ReadingScreen(), // Placeholder
               SkillType.pronunciation => const PronunScreen(),
             };
             Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
@@ -124,7 +126,8 @@ class _ReadyBody extends StatelessWidget {
         // return const AiSpeakingScreen();
         return const AiSpeakingScreenGemini();
       case 3:
-        return const TopicListScreen();
+        // return const TopicListScreen();
+        return const CoreSkillsScreen();
       case 4:
         return const SettingsScreen();
       default:
